@@ -163,15 +163,17 @@ export function FeedCard({
               type="button"
               onClick={() => handleRating("thumbsUp")}
               aria-pressed={userRating === "thumbsUp"}
-              className={`flex min-h-[72px] flex-1 items-center justify-center gap-3 rounded-xl px-5 py-4 text-2xl font-medium transition-colors ${
+              className={`flex min-h-[60px] flex-1 items-center justify-center gap-2 rounded-xl px-3 py-3 text-xl font-medium transition-colors md:min-h-[72px] md:px-5 md:py-4 md:text-2xl md:gap-3 ${
                 userRating === "thumbsUp"
                   ? "bg-gray-900 text-white"
                   : "bg-gray-100 text-gray-900 border border-gray-300"
               }`}
             >
               <Heart
-                className={`size-8 ${
-                  userRating === "thumbsUp" ? "fill-white text-white" : "text-rose-600"
+                className={`md:size-8 size-7 ${
+                  userRating === "thumbsUp"
+                    ? "fill-white text-white"
+                    : "text-rose-600"
                 }`}
                 aria-hidden
               />
@@ -181,14 +183,14 @@ export function FeedCard({
               type="button"
               onClick={onLikeToggle}
               aria-pressed={liked}
-              className={`flex min-h-[72px] flex-1 items-center justify-center gap-3 rounded-xl px-5 py-4 text-2xl font-medium transition-colors ${
+              className={`flex min-h-[60px] flex-1 items-center justify-center gap-2 rounded-xl px-3 py-3 text-xl font-medium transition-colors md:min-h-[72px] md:px-5 md:py-4 md:text-2xl md:gap-3 ${
                 liked
                   ? "bg-gray-900 text-white"
                   : "bg-gray-100 text-gray-900 border border-gray-300"
               }`}
             >
               <Star
-                className={`size-8 ${
+                className={`md:size-8 size-7 ${
                   liked ? "fill-yellow-400 text-yellow-400" : "text-yellow-400"
                 }`}
                 aria-hidden
@@ -198,10 +200,10 @@ export function FeedCard({
             <button
               type="button"
               onClick={() => setShareOpen((v) => !v)}
-              className="flex min-h-[72px] flex-1 items-center justify-center gap-3 rounded-xl bg-gray-900 px-5 py-4 text-2xl font-medium text-white transition-colors hover:bg-gray-800"
+              className="flex min-h-[60px] flex-1 items-center justify-center gap-2 rounded-xl bg-gray-900 px-3 py-3 text-xl font-medium text-white transition-colors hover:bg-gray-800 md:min-h-[72px] md:px-5 md:py-4 md:text-2xl md:gap-3"
               aria-expanded={shareOpen}
             >
-              <Share2 className="size-8 shrink-0" aria-hidden />
+              <Share2 className="md:size-8 size-7 shrink-0" aria-hidden />
               <span>공유 {displayShareCount}</span>
             </button>
           </div>
