@@ -48,14 +48,18 @@ export function FeedCard({
   const handleShareKakao = async () => {
     onShare();
     try {
-      if (typeof navigator !== "undefined" && "share" in navigator) {
-        await (navigator as Navigator).share?.({
+      if (typeof window !== "undefined" && "share" in window.navigator) {
+        await (window.navigator as Navigator).share?.({
           title: shareTitle,
           text: `${shareText.slice(0, 100)}... ${SHARE_TEXT}`,
           url: shareUrl,
         });
-      } else if (typeof navigator !== "undefined" && navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(`${shareTitle}\n${shareUrl}`);
+      } else if (
+        typeof window !== "undefined" &&
+        "clipboard" in window.navigator &&
+        window.navigator.clipboard
+      ) {
+        await window.navigator.clipboard.writeText(`${shareTitle}\n${shareUrl}`);
       }
       if (typeof window !== "undefined") {
         window.alert("카카오톡에서 링크를 붙여넣어 공유해 주세요.");
@@ -79,8 +83,12 @@ export function FeedCard({
   const handleShareLink = async () => {
     onShare();
     try {
-      if (typeof navigator !== "undefined" && navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(`${shareTitle}\n${shareUrl}`);
+      if (
+        typeof window !== "undefined" &&
+        "clipboard" in window.navigator &&
+        window.navigator.clipboard
+      ) {
+        await window.navigator.clipboard.writeText(`${shareTitle}\n${shareUrl}`);
         if (typeof window !== "undefined") {
           window.alert("링크가 복사되었습니다.");
         }

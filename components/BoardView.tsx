@@ -56,16 +56,35 @@ export function BoardView({
       const text = selected.title ? `${selected.title}\n\n${selected.body}` : selected.body;
       const url = typeof window !== "undefined" ? window.location.href : "";
 
-      if (typeof navigator !== "undefined" && navigator.share) {
+      if (typeof window !== "undefined" && "share" in window.navigator) {
         try {
-          await navigator.share({ title, text: `${text.slice(0, 100)}...`, url });
+          await (window.navigator as Navigator).share({
+            title,
+            text: `${text.slice(0, 100)}...`,
+            url,
+          });
         } catch (err) {
           if ((err as Error).name !== "AbortError") {
-            await navigator.clipboard?.writeText(`${url}\n이거 보고 웃으세요 :-)`);
+            if (
+              "clipboard" in window.navigator &&
+              window.navigator.clipboard
+            ) {
+              await window.navigator.clipboard.writeText(
+                `${url}\n이거 보고 웃으세요 :-)`,
+              );
+            }
           }
         }
       } else {
-        await navigator.clipboard?.writeText(`${text.slice(0, 80)}...\n${url}`);
+        if (
+          typeof window !== "undefined" &&
+          "clipboard" in window.navigator &&
+          window.navigator.clipboard
+        ) {
+          await window.navigator.clipboard.writeText(
+            `${text.slice(0, 80)}...\n${url}`,
+          );
+        }
       }
     };
 
