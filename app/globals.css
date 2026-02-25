@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --beige: #f5f0e8;
+  --beige-dark: #2c2416;
+}
+
+body {
+  background-color: var(--beige);
+  color: var(--beige-dark);
+  /* 친근한 복고(신문/잡지) 느낌: 대비는 유지하고, 너무 번쩍이지 않게 */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
